@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{resources/fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <section>
+        <h1>Update currency rate</h1>
+        <form method="post" th:action="@{http://localhost:8080/update-rate}" th:object="${findConversionForm}">
+
+            <p>From</p>
+            <select name="from" th:field="*{from}">
+                <option value="SEK">SEK</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="CNY">CNY</option>
+            </select>
+            <br><br>
+            <p>To</p>
+            <select name="to" th:field="*{to}">
+                <option value="SEK">SEK</option>
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+                <option value="CNY">CNY</option>
+            </select>
+            <br><br>
+            New Rate:<br>
+            <input type="text" th:field="*{rate}">
+            <br>
+            <br><br>
+            <input type="submit" value="Update">
+        </form>
+
+    </section>
+    <section>
+        <h1>Updated result</h1>
+        <p class="form" th:object="${findConversionForm}">
+            From: <span th:text="*{from}">Missing</span>,
+            To: <span th:text="*{to}">Missing</span>,
+            New rate: <span th:text="*{rate}">Missing</span>
+        </p>
+        <br>
+    </section>
+    <section>
+        <h1>Conversion so far</h1>
+        <p class="counter" th:object="${findConversionForm}">
+            <span th:text="*{totalCount}">Missing</span>
+        </p>
+    </section>
+
+</main>
+</body>
+</html>
